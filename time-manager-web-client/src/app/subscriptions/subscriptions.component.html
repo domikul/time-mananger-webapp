@@ -1,0 +1,15 @@
+<mat-tab-group mat-stretch-tabs>
+  <mat-tab label="OWN SUBSCRIPTIONS">
+    <app-own-subscriptions></app-own-subscriptions>
+  </mat-tab>
+  <mat-tab label="GIVEN SUBSCRIPTIONS">
+    <ng-template matTabContent>
+      <app-given-subscriptions></app-given-subscriptions>
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="ADDITIONAL EMAILS">
+    <ng-template matTabContent>
+      <app-emails></app-emails>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>

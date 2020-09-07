@@ -1,0 +1,13 @@
+<div fxLayout="row" fxLayoutAlign="center center" class="timer-container" [ngClass]="{'suspended' : timer.isSuspended, 'active' : !timer.isSuspended, 'stopped': timer.isEmpty}">
+  <span fxFlex="25%">
+    <button mat-icon-button (click)="startTimer()" *ngIf="!sureSuspended && timer.isSuspended && own"><mat-icon>play_arrow</mat-icon></button>
+    <button mat-icon-button (click)="suspendTimer()" *ngIf="!sureSuspended && !timer.isSuspended && own"><mat-icon>pause</mat-icon></button>
+    <button mat-icon-button (click)="stopTimer()" *ngIf="!sureSuspended && !timer.isEmpty && own"><mat-icon>stop</mat-icon></button>
+  </span>
+  <span fxFlex="30%" class="label-bigger">
+    {{timer.timerTime | timeString}}
+  </span>
+  <span fxFlex="45%" class="label" *ngIf="(userService.getUser(timer.userId) | async) as user">
+    {{user.firstName}} {{user.lastName}}
+  </span>
+</div>

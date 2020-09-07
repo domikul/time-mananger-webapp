@@ -1,0 +1,25 @@
+mat-card {
+  width: 80%!important;
+  max-width: 450px;
+  margin-top: 5vh;
+}
+
+mat-card-content {
+  text-align: center;
+}
+
+mat-card-header {
+  justify-content: center;
+}
+
+.label {
+  margin-top: 8px;
+  font-size: 12pt;
+}
+
+.btn-sm {
+  height: 23px;
+  line-height: 23px;
+  min-height: 23px;
+  padding: 0;
+}

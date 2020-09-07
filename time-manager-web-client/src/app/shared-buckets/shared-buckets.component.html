@@ -1,0 +1,10 @@
+<app-bucket-details *ngIf="selectedBucket != null ; else elseBlock"  [buttonsAllow]="showButtons" [inputBucket] = "selectedBucket" (backClicked)="onBack($event)"  (saveClicked)="onSave($event)">
+</app-bucket-details>
+
+<ng-template #elseBlock>
+  <app-bucket-list  *ngIf="buckets && buckets.length > 0"  [buttonsAllow]="showButtons" [buckets]="buckets" (showClicked)="onShow($event)"></app-bucket-list>
+</ng-template>
+
+<div style="margin-top: 10vh" *ngIf="buckets && buckets.length == 0">
+  <p>No one has shared a bucket with you yet.</p>
+</div>

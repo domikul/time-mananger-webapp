@@ -1,0 +1,40 @@
+
+<form (ngSubmit)="save()" #form="ngForm">
+<h1 mat-dialog-title *ngIf="type == true; else elseBlock">Create new Bucket</h1>
+  <ng-template #elseBlock>
+    <h1 mat-dialog-title>Edit Bucket</h1>
+  </ng-template>
+
+  <mat-dialog-content class="inputFields" >
+  <mat-form-field [hideRequiredMarker]="true">
+    <input matInput
+           placeholder="Enter bucket name"
+           name="bucketName"
+           [(ngModel)]="bucket.bucketName" required >
+  </mat-form-field>
+  <mat-form-field [hideRequiredMarker]="true">
+    <textarea matInput
+              maxlength="255"
+           placeholder="Enter bucket description"
+           name="description"
+           [(ngModel)]="bucket.description" required>
+    </textarea>
+  </mat-form-field>
+  <mat-form-field *ngIf="sendButtonsAllow == true" [hideRequiredMarker]="true">
+    <input type="number" min="1" matInput
+           placeholder="Enter maximum tasks "
+           name="maxTasks"
+           [(ngModel)]="bucket.maxTasks" required>
+  </mat-form-field>
+
+
+
+  </mat-dialog-content>
+
+  <div fxLayout="row" fxLayoutAlign="end start" fxLayoutGap="25px">
+  <mat-dialog-actions>
+  <button mat-flat-button color="primary" type="button" (click)="close()">CANCEL</button>
+  <button mat-flat-button color="primary" type="submit"  >SAVE</button>
+  </mat-dialog-actions>
+  </div>
+</form>

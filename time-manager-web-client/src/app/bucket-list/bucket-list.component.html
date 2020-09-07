@@ -1,0 +1,15 @@
+<div fxLayout="row" fxLayoutAlign="end" *ngIf="showNewBucketButton">
+  <button  id="new-bucket-button" mat-flat-button color="primary" (click)="openDialog()" >NEW BUCKET</button>
+</div>
+
+<section id="containers" *ngFor="let bucket of buckets">
+  <mat-card class="bucket">
+    <mat-card-title > {{bucket.bucketName}} </mat-card-title>
+    <mat-card-subtitle >{{bucket.description}} </mat-card-subtitle>
+    <article class="button-article" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="8px">
+      <button mat-flat-button color="primary" (click)="show(this.bucket)" >SHOW</button>
+      <button mat-flat-button color="primary" id="deleteButton" *ngIf="buttonsAllow" (click)="openAlert(this.bucket)">DELETE</button>
+    </article>
+  </mat-card>
+
+</section>

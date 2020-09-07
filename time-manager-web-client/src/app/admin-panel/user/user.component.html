@@ -1,0 +1,28 @@
+<div fxLayoutAlign="center">
+  <mat-card fxFlex class="primary-background dark-primary-text">
+    <mat-card-header>
+      <mat-card-title>{{user.firstName}} {{user.lastName}}</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div fxLayout="row wrap">
+
+        <span fxFlex="50" class="label">Email:</span>
+        <span fxFlex="50" class="label">{{user.email}}</span>
+
+        <span fxFlex="50" class="label">Position:</span>
+        <span fxFlex="50" class="label" *ngIf="(positionService.getPosition(user.positionId) | async) as position">
+          {{position.positionName}}
+        </span>
+        <div fxFlex fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="8px">
+
+          <button class="btn-sm" mat-flat-button (click)="showHistory()" >HISTORY</button>
+          <button mat-icon-button (click)="deleteUser()"><mat-icon>delete</mat-icon></button>
+          <button mat-icon-button (click)="launchEdit()"><mat-icon>edit</mat-icon></button>
+
+        </div>
+      </div>
+    </mat-card-content>
+
+  </mat-card>
+</div>

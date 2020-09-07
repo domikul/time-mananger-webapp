@@ -1,0 +1,4 @@
+<div class="container">
+  <app-task-list *ngIf="tasks && tasks.length > 0" [sureOwn]="false" [tasks]="tasks"></app-task-list>
+</div>
+<p *ngIf="tasks && tasks.length === 0">You are not shared any task.</p>

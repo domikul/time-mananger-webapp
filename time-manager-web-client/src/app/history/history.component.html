@@ -1,0 +1,35 @@
+<span fxLayout="row" fxLayoutGap="100px">
+  <button mat-flat-button color="primary" type="button" (click)="close()">CLOSE</button>
+  <h2 *ngIf="elementNumber != 3"> History of operations on this item: </h2>
+  <h2 *ngIf="elementNumber == 3"> History of operations on this account: </h2>
+</span>
+
+
+<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="idHistory"  >
+    <mat-header-cell *matHeaderCellDef> # </mat-header-cell>
+    <mat-cell *matCellDef="let dataSource; let indexOfelement=index;"> {{indexOfelement}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="modificatorId">
+    <mat-header-cell *matHeaderCellDef> Modificator </mat-header-cell>
+    <mat-cell  *matCellDef="let dataSource" >
+      <div *ngIf="(userService.getUser(dataSource.modificatorId) | async) as modificator"> {{modificator.firstName}} {{modificator.lastName}}</div>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="modificationTime">
+    <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
+    <mat-cell *matCellDef="let dataSource" > {{dataSource.modificationTime | date:'shortDate'}} </mat-cell>
+  </ng-container>
+
+
+  <ng-container matColumnDef="operationType">
+    <mat-header-cell *matHeaderCellDef> Operation </mat-header-cell>
+    <mat-cell *matCellDef="let dataSource"> {{(operationTypeService.getOperationType(dataSource.operationType) | async).operationTypeName }} </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>

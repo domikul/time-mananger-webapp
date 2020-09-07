@@ -1,0 +1,9 @@
+<section class="content" fxFlexAlign="center" fxLayout="row wrap" fxLayoutGap="20px grid">
+  <app-task fxFlex="50%" fxFlex.sm="100%" fxFlex.xs="100%"
+            *ngFor="let task of tasks"
+            [task]="task"
+            [sureOwn]="sureOwn"
+            [second$]="second$"
+            (deleted)="onTaskDeleted($event)">
+  </app-task>
+</section>

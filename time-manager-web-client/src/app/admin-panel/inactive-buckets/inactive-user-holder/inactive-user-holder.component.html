@@ -1,0 +1,29 @@
+<mat-expansion-panel (afterExpand)="loadBuckets()">
+
+  <mat-expansion-panel-header>
+    <span class="header">{{user.firstName}} {{user.lastName}}</span>
+  </mat-expansion-panel-header>
+
+  <ng-template matExpansionPanelContent>
+    <div [ngClass]="{'mat-app-background' : buckets && buckets.length > 0}"
+         [style]="{'padding-bottom' : selectedBucket === null ? '4vh' : '0'}">
+
+    <app-bucket-list *ngIf="selectedBucket === null && buckets && buckets.length > 0"
+                     [buckets]="buckets"
+                     (showClicked)="onBucketSelected($event)"
+                     [buttonsAllow]="true"
+                     [showNewBucketButton]="false">
+    </app-bucket-list>
+
+    <p *ngIf="buckets && buckets.length === 0">This user has no buckets</p>
+
+    <app-bucket-details *ngIf="selectedBucket !== null"
+                        [inputBucket]="selectedBucket"
+                        [buttonsAllow]="true"
+                        (saveClicked)="onBucketSaved($event)"
+                        (backClicked)="selectedBucket = null;">
+    </app-bucket-details>
+    </div>
+  </ng-template>
+
+</mat-expansion-panel>

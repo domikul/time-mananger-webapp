@@ -1,0 +1,77 @@
+
+#new-bucket-button{
+  margin-top: 30px;
+  margin-right: 95px;
+  width: 220px;
+}
+
+#containers{
+  margin-top: 40px;
+  margin-left: 30px;
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+
+
+mat-card-title{
+  text-align: center;
+  margin-top: 15px !important;
+  overflow: auto;
+  min-height: 30px;
+  max-height: 41px;
+  color: rgba(2,6,24,0.78) !important;
+}
+
+mat-card-subtitle {
+  margin-top: 10px !important;
+  text-align: center;
+  overflow: auto;
+  min-height: 130px;
+  max-height: 130px;
+  color: rgba(2,6,24,0.78) !important;
+}
+
+
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+  overflow: -moz-scrollbars-none;
+}
+
+.bucket{
+  width: 300px;
+  height: 230px;
+  display: inline-block;
+  padding: 10px;
+  margin: 10px;
+  box-shadow: 3px 5px 10px -1px rgba(0,0,0,.3);
+  background-color: lightgrey;
+
+}
+
+.bucket .button-article {
+  position: relative;
+  bottom: 25px;
+  display: flex;
+  align-items: center;
+  align-self: flex-end !important;
+  justify-content: center;
+
+}
+
+.deleteButton{
+  margin-left: 10px;
+}
+
+button {
+  width: 120px;
+  height: 40px;
+  color: lightgrey !important;
+
+
+}
+
+:host {
+  height: 100%;
+}
+

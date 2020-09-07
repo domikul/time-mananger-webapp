@@ -1,0 +1,27 @@
+
+<span fxLayout="row" fxLayoutAlign="end start" fxLayoutGap="15px">
+  <button mat-flat-button color="primary" (click)="showHistory()" *ngIf="buttonsAllow" >HISTORY</button>
+  <button mat-flat-button color="primary" (click)="launchShares()" *ngIf="buttonsAllow" >SHARES</button>
+  <button mat-flat-button color="primary" (click)="openDialog()" >EDIT BUCKET</button>
+  <button mat-flat-button color="primary" (click)="launchNewTask()" *ngIf="!isAdministrated">NEW TASK</button>
+  <button mat-flat-button color="primary" (click)="backButtonClick()">BACK</button>
+</span>
+
+<div fxLayout="column" fxLayoutAlign="center center">
+  <mat-card class="bucketDetails"  >
+    <mat-card-title id="bucketName">{{inputBucket.bucketName}}</mat-card-title>
+    <mat-card-subtitle id="user">
+      <div *ngIf="(userService.getUser(inputBucket.userId) | async) as user">
+        {{user.firstName}} {{user.lastName}}
+      </div>
+    </mat-card-subtitle>
+    <mat-card-subtitle  id="description">{{inputBucket.description}}</mat-card-subtitle>
+    <mat-card-subtitle id="max-tasks">Tasks in bucket: {{this.tasks.length}}/{{inputBucket.maxTasks}}</mat-card-subtitle>
+    <mat-progress-bar value="{{(this.tasks.length/this.inputBucket.maxTasks)*100}}"></mat-progress-bar>
+  </mat-card>
+
+</div>
+
+
+<app-task-list [tasks]="tasks" [sureOwn]="isOwn"></app-task-list>
+

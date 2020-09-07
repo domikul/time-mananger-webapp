@@ -1,0 +1,40 @@
+button {
+   text-align: center;
+   margin-top: 30px;
+   margin-right: 95px;
+   width: 125px;
+   height: 40px;
+   color: #d3d3d3 !important;
+}
+
+.bucketDetails{
+  width: 60% !important;
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+
+#bucketName {
+  font-size: 28px;
+}
+
+#user{
+  font-size: 15px;
+}
+
+#max-tasks{
+  font-size: 15px;
+}
+
+#description{
+  font-size: 18px;
+}
+
+app-task-list {
+  overflow: hidden;
+}
+
+:host {
+  height: 100%!important;
+  overflow: hidden!important;
+}

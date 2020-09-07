@@ -1,0 +1,36 @@
+<div fxLayout="row wrap">
+  <div *ngFor="let subscription of subscriptions" fxFlex="33.3%" fxFlex.sm="50%" fxFlex.xs="100%" fxLayoutAlign="center">
+    <mat-card class="primary-background dark-primary-text">
+      <mat-card-content>
+
+        <section fxLayout="row" fxLayoutAlign="center center">
+          <div fxLayout="column" fxFlex="85%" fxLayoutGap="10px">
+
+            <div class="label" fxLayoutAlign="center center" *ngIf="mode === 'own' && (emailService.getEmail(subscription.emailId) | async) as email">
+              <span class="small-label">To:</span>&nbsp;
+              {{email.emailName}}
+            </div>
+
+            <div class="label" fxLayoutAlign="center center" *ngIf="mode === 'given' && (userService.getUser(subscription.userId) | async) as user">
+              <span class="small-label">From:</span>&nbsp;
+              {{user.firstName}} {{user.lastName}}
+            </div>
+
+            <div class="label" fxLayout="row wrap">
+              <span class="small-label" fxFlex="50%">For task:</span>
+              <span fxFlex="50%">{{subscription.taskName}}</span>
+              <span class="small-label" fxFlex="50%">in bucket:</span>
+              <span fxFlex="50%">{{subscription.bucketName}}</span>
+            </div>
+
+          </div>
+
+          <div fxFlex="15%">
+            <button mat-icon-button (click)="deleteSubscription(subscription)"><mat-icon>delete</mat-icon></button>
+          </div>
+        </section>
+
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

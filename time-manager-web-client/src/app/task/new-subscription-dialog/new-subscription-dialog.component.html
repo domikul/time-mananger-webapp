@@ -1,0 +1,23 @@
+
+  <h1 mat-dialog-title>Add subscriptions to {{data.task.taskName}}</h1>
+
+  <mat-dialog-content>
+
+    <section fxLayout="column" fxLayoutAlign="center center">
+      <div *ngFor="let email of emails" fxFlex>
+        {{email.emailName}}
+        <button mat-icon-button (click)="addSubscription(email)"><mat-icon>add</mat-icon></button>
+      </div>
+      <div *ngIf="emails && emails.length === 0">
+        There is no email that You can select. Add new email to create subscription.
+      </div>
+    </section>
+
+  </mat-dialog-content>
+
+  <div fxLayout="row" fxLayoutAlign="end start">
+    <mat-dialog-actions>
+      <button mat-flat-button color="primary" (click)="close()">OK</button>
+    </mat-dialog-actions>
+  </div>
+

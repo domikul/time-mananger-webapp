@@ -1,0 +1,9 @@
+<div class="accordion-container">
+<mat-accordion *ngIf="inactiveUsers && inactiveUsers.length > 0; else emptyArray" multi>
+  <app-inactive-user-holder *ngFor="let user of inactiveUsers" [user]="user"></app-inactive-user-holder>
+</mat-accordion>
+
+<ng-template #emptyArray>
+  <p>There is no inactive users</p>
+</ng-template>
+</div>

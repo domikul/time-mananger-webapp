@@ -1,0 +1,95 @@
+<div fxLayoutAlign="center">
+  <mat-card fxFlex class="primary-background dark-primary-text">
+
+      <mat-card-header>
+        <mat-card-title>{{task.taskName}}</mat-card-title>
+        <mat-card-subtitle *ngIf="(userService.getUser(task.userId) | async) as user">
+          {{user.firstName}} {{user.lastName}}
+        </mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <p class="description">{{task.description}} </p>
+        <div fxLayout="row wrap">
+          <span fxFlex="50" class="priority-status-label status-{{status.idStatus}}">{{status.statusName | spacedCapitals}}</span>
+          <span fxFlex="50" class="priority-status-label priority-{{priority.idPriority}}">{{priority.priority | spacedCapitals}}</span>
+
+          <span fxFlex="50" class="label">Deadline:</span>
+          <span fxFlex="50" class="label">{{task.deadline | date:'MMM d, y HH:mm'}}</span>
+
+          <span fxFlex="50" class="label">Start date:</span>
+          <span fxFlex="50" class="label">{{task.beginTime | date:'MMM d, y HH:mm'}}</span>
+
+          <span fxFlex="50" class="label">Estimated end time:</span>
+          <span fxFlex="50" class="label">{{task.estimatedEndTime}}</span>
+
+          <span fxFlex="50" class="label-bigger">Total time:</span>
+          <span fxFlex="50" class="label-bigger"
+                [ngClass]="{'time-exceeded': totalSeconds > (task.estimatedEndTime | timeString:transformDirection.toSeconds)}">
+            {{totalSeconds | timeString}}
+          </span>
+        </div>
+
+        <div *ngIf="status.statusName !== 'FINISHED'; else whenFinished">
+          <div fxLayout="row wrap" class="buttons" fxLayoutAlign="center center" fxLayoutGap="8px">
+            <button fxFlex="25%" class="btn-sm" mat-flat-button (click)="launchNewSubscription()">SUBSCRIBE</button>
+            <button fxFlex="25%" *ngIf="isStrictOwn" (click)="launchShares()" class="btn-sm" mat-flat-button>SHARES</button>
+            <button fxFlex="25%" *ngIf="isStrictOwn" (click)="showHistory()" class="btn-sm" mat-flat-button>HISTORY</button>
+            <button fxFlex="30%" class="btn-sm" mat-flat-button (click)="launchEndRequest()" *ngIf="!isAdministrated">END REQUEST</button>
+            <span fxFlex="15%" fxLayout="row">
+              <button mat-icon-button *ngIf="isOwn" (click)="deleteTask()">
+                <mat-icon>delete</mat-icon>
+              </button>
+              <button mat-icon-button (click)="launchEdit()">
+                <mat-icon>edit</mat-icon>
+              </button>
+            </span>
+
+
+          </div>
+
+          <div fxLayout="column" fxLayoutAlign="center">
+
+            <app-timer *ngIf="!isAdministrated"
+                       [timer]="timerWrappers[0]"
+                       [second$]="second$"
+                       [suspendNotifier]="suspendNotifier"
+                       [stopNotifier]="stopNotifier"
+                       [sureSuspended]="this.status.idStatus === 3"
+                       [own]="true"
+                       (incremented)="onTimerIncremented()">
+            </app-timer>
+            <span [ngClass]="{ 'timers-container-scrollable' : !expanded }" #timersContainer>
+              <app-timer *ngFor="let timer of isAdministrated ? timerWrappers : timerWrappers.slice(1)"
+                         [second$]="second$"
+                         [suspendNotifier]="suspendNotifier"
+                         [timer]="timer"
+                         [own]="false"
+                         (incremented)="onTimerIncremented()">
+              </app-timer>
+            </span>
+
+            <button mat-icon-button fxFlexAlign="center"
+                    class="expand-button" [disableRipple]="true"
+                    (click)="expanded = true;"
+                    *ngIf="!expanded && timersContainer.offsetHeight < timersContainer.scrollHeight"
+                    fxLayoutAlign="center center">
+              <mat-icon>expand_more</mat-icon>
+              Expand
+              <mat-icon>expand_more</mat-icon>
+            </button>
+          </div>
+
+        </div>
+
+        <ng-template #whenFinished>
+          <button mat-icon-button *ngIf="isOwn" (click)="deleteTask()">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </ng-template>
+
+      </mat-card-content>
+
+
+  </mat-card>
+</div>

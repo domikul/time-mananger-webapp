@@ -1,0 +1,49 @@
+<h1 mat-dialog-title>Shares of {{data.shareable.getShareableName()}}</h1>
+
+<mat-dialog-content fxLayout="column" fxLayoutGap="10px">
+
+  <div *ngIf="showNewShare" fxLayout="row wrap" fxLayoutAlign="center center">
+    <p fxFlex="100%">Select users</p>
+
+    <form (ngSubmit)="submitNewShares()" #form="ngForm" fxFlex="100%" fxLayout="row" fxLayoutGap="5px">
+
+      <mat-form-field fxFlex="95%">
+        <mat-label>Users</mat-label>
+        <mat-select [(value)]="newSharedUsers" multiple *ngIf="(userService.getUsers() | async) as users">
+          <mat-option *ngFor="let user of users" [value]="user">
+            {{user.firstName}} {{user.lastName}} <span class="email-label">({{user.email}})</span>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-flat-button class="ok-button" color="primary" type="submit" fxFlex="5%">OK</button>
+
+    </form>
+
+  </div>
+
+  <div *ngFor="let share of shares;" fxLayout="column" fxLayoutAlign="center center" fxFlex="100%">
+
+    <div fxFlex="100%" fxLayout="row" fxLayoutAlign="center center" *ngIf="(userService.getUser(share.userId) | async) as user">
+      <span fxFlex="90%">
+        {{user.firstName}} {{user.lastName}}
+      </span>
+      <span fxFlex="10%">
+        <button mat-icon-button (click)="deleteShare(user.idUser)"><mat-icon>delete</mat-icon></button>
+      </span>
+    </div>
+  </div>
+
+  <div fxFlex="100%" fxLayoutAlign="center" *ngIf="shares && shares.length === 0">
+    No shares
+  </div>
+
+</mat-dialog-content>
+
+<div fxLayout="row" fxLayoutAlign="end start">
+  <mat-dialog-actions>
+    <button mat-flat-button color="primary" (click)="newShare()">NEW SHARES</button>
+    <button mat-flat-button color="primary" (click)="close()">CLOSE</button>
+  </mat-dialog-actions>
+</div>
+
+

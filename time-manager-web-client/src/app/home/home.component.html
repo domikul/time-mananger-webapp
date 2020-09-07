@@ -1,0 +1,15 @@
+<mat-tab-group mat-stretch-tabs>
+  <mat-tab label="OWN BUCKETS">
+    <app-own-buckets></app-own-buckets>
+  </mat-tab>
+  <mat-tab label="SHARED BUCKETS">
+    <ng-template matTabContent>
+      <app-shared-buckets></app-shared-buckets>
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="SHARED TASKS">
+    <ng-template matTabContent>
+      <app-shared-tasks></app-shared-tasks>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>

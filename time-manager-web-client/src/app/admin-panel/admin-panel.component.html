@@ -1,0 +1,10 @@
+<mat-tab-group mat-stretch-tabs>
+  <mat-tab label="ALL USERS">
+    <app-users-list></app-users-list>
+  </mat-tab>
+  <mat-tab label="INACTIVE BUCKETS">
+    <ng-template matTabContent>
+      <app-inactive-buckets></app-inactive-buckets>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>

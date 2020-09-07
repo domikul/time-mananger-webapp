@@ -1,0 +1,15 @@
+<mat-toolbar fxLayout="row" class="toolbar-container">
+  <span fxFlex="50">Time Manager</span>
+
+  <span fxFlex="50" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="end">
+    <span *ngIf="currentUser" class="welcome">Welcome {{currentUser.firstName}} {{currentUser.lastName}}</span>
+    <a class="mat-tab-link" routerLink="/">Home</a>
+    <a class="mat-tab-link" *ngIf="currentUser && currentUser.roleId === 1" routerLink="/admin-panel">Admin panel</a>
+    <a class="mat-tab-link" *ngIf="currentUser" routerLink="/settings">Settings</a>
+    <a class="mat-tab-link" *ngIf="currentUser" routerLink="/subscriptions">Subscriptions</a>
+    <a class="mat-tab-link" *ngIf="currentUser" href="#" (click)="logout()">Logout</a>
+  </span>
+
+</mat-toolbar>
+
+<router-outlet></router-outlet>

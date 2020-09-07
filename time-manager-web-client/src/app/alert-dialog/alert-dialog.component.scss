@@ -1,0 +1,19 @@
+#my-dialog-content{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+button{
+ width: 140px;
+}
+
+.mdc-dialog__actions{
+  margin-top: 20px;
+}
+
+mat-icon{
+  margin-right: 5px;
+
+}

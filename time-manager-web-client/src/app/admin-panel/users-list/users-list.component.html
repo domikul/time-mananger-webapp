@@ -1,0 +1,26 @@
+<div fxLayout="row" fxLayoutAlign="end">
+  <button mat-flat-button color="primary" (click)="launchNewUser()">NEW USER</button>
+</div>
+
+<section class="content" fxFlexAlign="center" fxLayout="row wrap" fxLayoutGap="15px grid">
+  <div fxFlex="33.3%" fxFlex.sm="100%" fxFlex.xs="100%">
+    <p>Managers</p>
+    <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="15px">
+      <app-user fxFlex *ngFor="let manager of managers" [user]="manager"></app-user>
+    </div>
+  </div>
+
+  <div fxFlex="33.3%" fxFlex.sm="100%" fxFlex.xs="100%">
+    <p>Team Members</p>
+    <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="15px">
+      <app-user fxFlex *ngFor="let teamMember of teamMembers" [user]="teamMember"></app-user>
+    </div>
+  </div>
+
+  <div fxFlex="33.3%" fxFlex.sm="100%" fxFlex.xs="100%">
+    <p>Admins</p>
+    <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="15px">
+      <app-user fxFlex *ngFor="let admin of admins" [user]="admin"></app-user>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,28 @@
+<h1 mat-dialog-title *ngIf="data.own">End requests of {{data.task.taskName}}</h1>
+<h1 mat-dialog-title *ngIf="!data.own">Send end request to {{data.task.taskName}}</h1>
+
+<mat-dialog-content>
+
+  <section *ngIf="data.own" fxLayout="column" fxLayoutAlign="center center">
+    <div *ngFor="let endRequest of endRequests" fxFlex>
+      <span *ngIf="(userService.getUser(endRequest.userId) | async) as user">
+        {{user.firstName}} {{user.lastName}}
+      </span>
+    </div>
+
+    <div *ngIf="endRequests && endRequests.length === 0">
+      This task has no end requests
+    </div>
+  </section>
+
+  <section *ngIf="!data.own" fxLayoutAlign="center">
+    <button mat-flat-button color="primary" (click)="sendEndRequest()">SEND END REQUEST</button>
+  </section>
+
+</mat-dialog-content>
+
+<div fxLayout="row" fxLayoutAlign="end start">
+  <mat-dialog-actions>
+    <button mat-flat-button color="primary" (click)="close()">CLOSE</button>
+  </mat-dialog-actions>
+</div>

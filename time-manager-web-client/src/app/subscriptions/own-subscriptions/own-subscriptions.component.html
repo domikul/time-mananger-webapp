@@ -1,0 +1,7 @@
+<app-subscriptions-list *ngIf="subscriptions && subscriptions.length > 0"
+                        [subscriptions]="subscriptions"
+                        [mode]="'own'">
+</app-subscriptions-list>
+<p *ngIf="subscriptions && subscriptions.length === 0">
+  You have no own subscriptions
+</p>

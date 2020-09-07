@@ -1,0 +1,81 @@
+mat-card {
+  width: 80%!important;
+  max-width: 450px;
+  margin-bottom: 15vh;
+  height: auto;
+}
+
+mat-card-content {
+  text-align: center;
+}
+
+.label {
+  margin-top: 8px;
+  font-size: 12pt;
+}
+
+.label-bigger {
+  margin-top: 8px;
+  font-size: 14pt;
+  font-weight: bolder;
+}
+
+mat-card-header, .description {
+  justify-content: center;
+  text-align: center;
+  max-height: 80px;
+  overflow: scroll;
+  white-space: pre-wrap;
+}
+
+.status-1 {
+  color: #3cb2d1;
+}
+
+.status-2, .priority-1 {
+  color: #3cd14b;
+}
+
+.status-3, .priority-2 {
+  color: #dc7018;
+}
+
+.status-4, .priority-3, .time-exceeded {
+  color: #e32525;
+}
+
+.priority-status-label {
+  text-align: center;
+  font-size: 14pt;
+  font-weight: bolder;
+  letter-spacing: 1px;
+}
+
+.buttons {
+  margin-top: 8px;
+}
+
+.btn-sm {
+  height: 23px;
+  line-height: 23px;
+  min-height: 23px;
+  padding: 0;
+}
+
+.timers-container-scrollable {
+  max-height: 100px;
+  overflow: scroll;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  scrollbar-width: none;
+}
+
+.expand-button {
+  height: 15px;
+}
+
+.mat-card-subtitle {
+  color: rgba(0, 0, 0, 0.41)!important;
+}

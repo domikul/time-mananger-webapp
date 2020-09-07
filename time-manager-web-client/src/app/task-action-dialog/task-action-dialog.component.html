@@ -1,0 +1,69 @@
+<form (ngSubmit)="submit()" #form="ngForm">
+  <h1 mat-dialog-title *ngIf="data.mode === taskActionMode.edit">Edit task</h1>
+  <h1 mat-dialog-title *ngIf="data.mode === taskActionMode.create">Create task</h1>
+
+  <mat-dialog-content class="inputFields" fxLayout="column">
+    <mat-form-field [hideRequiredMarker]="true">
+      <mat-label>Task name</mat-label>
+      <input matInput
+             name="taskName"
+             [(ngModel)]="data.task.taskName" required>
+    </mat-form-field>
+
+    <mat-form-field [hideRequiredMarker]="true">
+      <mat-label>Description</mat-label>
+      <textarea matInput
+                maxlength="255"
+                name="description"
+                [(ngModel)]="data.task.description" required>
+      </textarea>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="data.own" [hideRequiredMarker]="true">
+      <mat-label>Deadline</mat-label>
+      <input type="datetime-local" matInput
+             name="deadline"
+             [(ngModel)]="formDeadline" required>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="data.own" [hideRequiredMarker]="true">
+      <mat-label>Estimated end time</mat-label>
+      <input matInput pattern="((0?[1-9])|([1-9][0-9]{1,2})|00):[0-5][0-9]:[0-5][0-9]"
+             name="estimatedEndTime"
+             [(ngModel)]="data.task.estimatedEndTime" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" *ngIf="data.own && data.mode === taskActionMode.edit" [hideRequiredMarker]="true">
+      <mat-label>Status</mat-label>
+      <mat-select [(value)]="this.data.task.statusId" [required]="true">
+
+        <mat-option *ngFor="let status of (statuses$ | async)"
+                    [value]="status.idStatus">
+          {{status.statusName | spacedCapitals}}
+        </mat-option>
+
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" *ngIf="data.own" [hideRequiredMarker]="true">
+      <mat-label>Priority</mat-label>
+      <mat-select [(value)]="this.data.task.priorityId" [required]="true" #prioritySelect>
+
+        <mat-option *ngFor="let priority of (priorities$ | async)"
+                    [value]="priority.idPriority">
+          {{priority.priority | spacedCapitals}}
+        </mat-option>
+
+      </mat-select>
+    </mat-form-field>
+
+
+  </mat-dialog-content>
+
+  <div fxLayout="row" fxLayoutAlign="end start" fxLayoutGap="25px">
+    <mat-dialog-actions>
+      <button mat-flat-button color="primary" type="button" (click)="cancel()">CANCEL</button>
+      <button mat-flat-button color="primary" [disabled]="form.invalid || (prioritySelect && prioritySelect.selected === undefined)" type="submit">SAVE</button>
+    </mat-dialog-actions>
+  </div>
+</form>

@@ -1,0 +1,24 @@
+@import '../task.component';
+
+mat-icon {
+  font-size: 32px;
+  margin-top: 2px;
+}
+
+.suspended {
+  background-color: rgba(255, 220, 112, 0.15);
+}
+
+.active {
+  background-color: rgba(60, 209, 75, 0.15);
+}
+
+.stopped {
+  background-color: rgba(227, 37, 37, 0.15);
+}
+
+.timer-container {
+  border-radius: 5px;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+}
